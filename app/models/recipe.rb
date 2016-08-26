@@ -1,3 +1,5 @@
+require 'pry'
+
 class Recipe < ActiveRecord::Base
   has_many :ingredients
   has_many :recipe_ingredients
@@ -7,6 +9,7 @@ class Recipe < ActiveRecord::Base
 
 
   def ingredient_ids=(ingredient_ids)
+    binding.pry
     ingredients = Ingredient.where("id in (?)", ingredient_ids)
     self.ingredients = ingredients
   end
