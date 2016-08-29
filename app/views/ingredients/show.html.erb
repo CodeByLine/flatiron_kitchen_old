@@ -4,7 +4,7 @@
 
 <%= link_to 'All Ingredients', ingredients_path %>
 
-<h2><%= @ingredient.name%> is used in the following recipes</h2>
+<h2><%= @ingredient.name %> is used in the following recipes</h2>
 <ul>
   <% @ingredient.recipes.each do |recipe| %>
     <li><%= link_to recipe.name, recipe_path(recipe) %>

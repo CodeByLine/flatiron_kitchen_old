@@ -3,6 +3,6 @@
   <%= f.text_field :name %>
   <%= f.label :total_on_hand %>
   <%= f.text_field :total_on_hand %><BR>
-  <%= f.collection_check_boxes :recipe_ids, Recipe.all, :id, :name %><br>
+  <%= f.collection_check_boxes :recipe_ids, Recipe.all, :id, :name %><BR><BR><BR>
   <%= f.submit %><br>
   <% end %>

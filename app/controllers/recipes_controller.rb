@@ -1,20 +1,26 @@
+require 'pry'
 class RecipesController < ApplicationController
+
+  def show
+    @recipe = Recipe.find(params[:id])
+
+  end
+
   def index
     @recipes = Recipe.all
   end
 
   def new
     @recipe = Recipe.new
+
   end
 
   def create
+    # binding.pry
     @recipe = Recipe.new(recipe_params)
-    @ingredient = Ingredient.new
-    if @recipe.save
-      redirect_to @recipe
-    else
-      render 'new'
-    end
+    @recipe.save
+    redirect_to @recipe
+
   end
 
 
@@ -29,9 +35,9 @@ class RecipesController < ApplicationController
     redirect_to @recipe
   end
 
-  def show
-    @recipe = Recipe.find(params[:id])
-  end
+
+
+
 
   def destroy
     @recipe = Recipe.find(params[:id])
@@ -41,6 +47,6 @@ class RecipesController < ApplicationController
 
 private
   def recipe_params
-    params.require(:recipe).permit(:name, :ingredient, :ingredient_ids => [])
+    params.require(:recipe).permit(:name, ingredients_attributes:[:name], :ingredient=>[], :ingredient_id=>[], :ingredient_ids=>[])
   end
 end

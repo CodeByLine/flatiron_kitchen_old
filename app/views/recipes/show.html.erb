@@ -3,11 +3,10 @@
 Ingredients:
 <ol>
   <% @recipe.ingredients.each do |ingredient| %>
-    <li><%=link_to ingredient.name, ingredient_path%></li>
+    <li><%= link_to ingredient.name, ingredient_path %></li>
 
   <% end %>
 </ol>
-
-
+<BR>
 <%= link_to 'All Ingredients', ingredients_path %> <BR>
 <%= link_to 'All Recipes', recipes_path %>

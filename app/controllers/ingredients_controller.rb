@@ -5,15 +5,14 @@ class IngredientsController < ApplicationController
 
   def new
     @ingredient = Ingredient.new
+     @ingredient.recipes.build(name: 'name')
   end
 
   def create
     @ingredient = Ingredient.new(ingredient_params)
-    if @ingredient.save
-      redirect_to @ingredient
-    else
-      render :new
-    end
+    @ingredient.save
+    redirect_to @ingredient
+
   end
 
   def edit
@@ -23,13 +22,8 @@ class IngredientsController < ApplicationController
   def update
     @ingredient = Ingredient.find(params[:id])
     @ingredient.update(ingredient_params)
-    # if @ingredient.save
       redirect_to ingredient_path(@ingredient.id)
-      # redirect_to @ingredient
-    # else
-    #   render :edit
-    # end
-  end
+    end
 
 
   def show
@@ -46,7 +40,7 @@ class IngredientsController < ApplicationController
 private
 
   def ingredient_params
-    params.require(:ingredient).permit(:name, :quantity, :recipe_ids)
+    params.require(:ingredient).permit(:name, :quantity, recipes_attributes:[:name], :recipe_ids=>[])
   end
 
 end
